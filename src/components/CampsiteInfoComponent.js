@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Card, CardImg, CardBody, CardTitle, CardText } from "reactstrap";
 
 class CampsiteInfo extends Component {
-
 	renderCampsite(campsite) {
 		return (
 			<div className="col-md-5 m-1">
@@ -37,24 +36,23 @@ class CampsiteInfo extends Component {
 					))}
 				</div>
 			);
-		} return <div />
+		}
+		return <div />;
 	}
 
 	render() {
 		const campsite = this.props.campsite;
-        const comment = campsite?.comments;
-        
-		if (campsite) {
-            
-			return (
-                <div className="row">
-                {this.renderCampsite(campsite)}
-                {this.renderComments(comment)}
-           </div>
-           
-          
-            )
+		const comment = campsite?.comments;
 
+		if (campsite) {
+			return (
+				<div className="container">
+					<div className="row">
+						{this.renderCampsite(campsite)}
+						{this.renderComments(comment)}
+					</div>
+				</div>
+			);
 		}
 		return <div></div>;
 	}
