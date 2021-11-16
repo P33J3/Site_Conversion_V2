@@ -1,37 +1,34 @@
-import React from 'react';
-import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
+import React from "react";
+import { Card, CardImg, CardImgOverlay, CardTitle } from "reactstrap";
 
-
-
-//object destructuring to pull out the props 
-function RenderDirectoryItem({campsite, onClick}) {
-    return (
-        // <Card onClick={() => this.props.onClick(campsite.id)}> becuase the object is destructured, we can remove the this.props from the method.
-         <Card onClick={() => onClick(campsite.id)}>
-                    <CardImg width='100%' src={campsite.image} alt={campsite.name} />
-                    <CardImgOverlay>
-                          <CardTitle>{campsite.name}</CardTitle>
-                      </CardImgOverlay>
-                    </Card>
-    );
+//object destructuring to pull out the props
+function RenderDirectoryItem({ campsite, onClick }) {
+	return (
+		// <Card onClick={() => this.props.onClick(campsite.id)}> becuase the object is destructured, we can remove the this.props from the method.
+		// <Card onClick={() => onClick(campsite.id)}>
+		<Card>
+			<CardImg width="100%" src={campsite.image} alt={campsite.name} />
+			<CardImgOverlay>
+				<CardTitle>{campsite.name}</CardTitle>
+			</CardImgOverlay>
+		</Card>
+	);
 }
 
 function Directory(props) {
-        const directory = props.campsites.map(campsite => {
-            return (
-                <div key={campsite.id} className="col-md-5 m-1">
-                    <RenderDirectoryItem campsite={campsite} onClick={props.onClick} />
-                </div>
-            )
-        })
+	const directory = props.campsites.map((campsite) => {
+		return (
+			<div key={campsite.id} className="col-md-5 m-1">
+				{ <RenderDirectoryItem campsite={campsite} /*onClick={props.onClick}*/ /> }
+			</div>
+		);
+	});
 
-        return (
-            <div className="container">
-                <div className="row">
-                    {directory}
-                </div>
-            </div>
-        )
+	return (
+		<div className="container">
+			<div className="row">{directory}</div>
+		</div>
+	);
 }
 
 export default Directory;
@@ -72,7 +69,6 @@ export default Directory;
 //             )
 //         })
 
-
 //         return (
 //             <div className='container'>
 //                 <div className='row'>
@@ -84,7 +80,6 @@ export default Directory;
 //                     </div>
 //                 </div> */}
 
-              
 //             </div>
 //         );
 //     }
