@@ -4,7 +4,11 @@ import Footer from "./FooterComponent";
 import Directory from "./DirectoryComponent";
 import CampsiteInfo from "./CampsiteInfoComponent";
 import { CAMPSITES } from "../shared/campsites";
+import { COMMENTS} from '../shared/comments';
+import { PARTNERS } from '../shared/partners';
+import { PROMOTIONS } from '../shared/promotions';
 import Home from "./HomeComponent";
+import Contact from "./ContactComponent";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 class Main extends Component {
@@ -12,6 +16,9 @@ class Main extends Component {
 		super(props);
 		this.state = {
 			campsites: CAMPSITES,
+      comments: COMMENTS,
+      partners: PARTNERS,
+      promotions: PROMOTIONS
 			// selectedCampsite: null
 		};
 	}
@@ -21,8 +28,13 @@ class Main extends Component {
 	// }
 
 	render() {
+    // We use the arrow function here as it is able to pull scope from its parent. A function declaration would have only been locally scoped
 		const HomePage = () => {
-			return <Home />;
+			return <Home
+                campsite={this.state.campsites.filter(campsite => campsite.featured)[0]}
+                promotion={this.state.promotions.filter(promotion => promotion.featured)[0]}
+                partner={this.state.partners.filter(partner => partner.featured)[0]}
+                 />;
 		};
 
 		return (
@@ -40,6 +52,8 @@ class Main extends Component {
 						path="/directory"
 						render={() => <Directory campsites={this.state.campsites} />}
 					/>
+          {/*When passing state data use render syntax; otherwise use component attribute*/}
+          <Route exact path='/contactus' component={Contact} />
 					<Redirect to="/home" />
 				</Switch>
 
@@ -47,7 +61,7 @@ class Main extends Component {
           
         onClick={campsiteId => this.onCampsiteSelect(campsiteId)} />
                 <CampsiteInfo campsite={this.state.campsites.filter(campsite =>
-                  
+
                  campsite.id === this.state.selectedCampsite)[0]}/> */}
 				<Footer />
 			</div>

@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardImg, CardImgOverlay, CardTitle } from "reactstrap";
 
 //object destructuring to pull out the props
-function RenderDirectoryItem({ campsite, onClick }) {
+function RenderDirectoryItem({ campsite, /*onClick*/ }) {
 	return (
 		// <Card onClick={() => this.props.onClick(campsite.id)}> becuase the object is destructured, we can remove the this.props from the method.
 		// <Card onClick={() => onClick(campsite.id)}>
