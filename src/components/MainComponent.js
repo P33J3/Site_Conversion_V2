@@ -9,6 +9,7 @@ import { PARTNERS } from '../shared/partners';
 import { PROMOTIONS } from '../shared/promotions';
 import Home from "./HomeComponent";
 import Contact from "./ContactComponent";
+import About from './AboutComponent';
 import { Switch, Route, Redirect } from "react-router-dom";
 
 class Main extends Component {
@@ -66,6 +67,7 @@ class Main extends Component {
 					/>
           {/*When passing state data use render syntax; otherwise use component attribute*/}
           <Route path='/directory/:campsiteId' component={CampsiteWithId}  />
+		  <Route path='/aboutus' render={ () => <About partners={this.state.partners} /> } />
           <Route exact path='/contactus' component={Contact} />
 					<Redirect to="/home" />
 				</Switch>
