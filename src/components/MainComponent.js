@@ -13,6 +13,7 @@ import Contact from "./ContactComponent";
 import About from './AboutComponent';
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
+import { addComment } from "../redux/ActionCreators";
 
 
 // Use the following function to forward state and change all occurences of 'state' to 'props' in the component below
@@ -24,6 +25,10 @@ const mapStateToProps = state => {
 		promotions: state.promotions
 	}
 }
+
+const mapDispatchToProps = {
+	addComment: (campsiteId, rating, author, text) => (addComment(campsiteId, rating, author, text))
+};
 class Main extends Component {
 	//State is now managed by Redux
 	// constructor(props) {
@@ -58,6 +63,7 @@ class Main extends Component {
         <CampsiteInfo
            campsite={this.props.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]}
         comments={this.props.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
+		addComment={this.props.addComment}
          />
   
       )
@@ -98,4 +104,4 @@ class Main extends Component {
 }
 
 //connect helps to link the redux and withRouter allows RouterDom to still work when using Redux
-export default withRouter(connect(mapStateToProps)(Main));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
